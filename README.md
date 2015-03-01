@@ -19,10 +19,10 @@ Monday | Wednesday
 1/26: [Logistic Regression,<br>Preview of Other Models](#class-9-logistic-regression-preview-of-other-models) | 1/28: [Model Evaluation Metrics](#class-10-model-evaluation-metrics)<br>**Milestone:** Data Exploration and Analysis Plan
 2/2: [Working a Data Problem](#class-11-working-a-data-problem) | 2/4: [Clustering and Visualization](#class-12-clustering-and-visualization)<br>**Milestone:** Deadline for Topic Changes
 2/9: [Naive Bayes](#class-13-naive-bayes) | 2/11: [Natural Language Processing](#class-14-natural-language-processing)
-2/16: *No Class* | 2/18: [Decision Trees and Ensembles](#class-15-decision-trees-and-ensembles)<br>**Milestone:** First Draft
-2/23: [Advanced scikit-learn](#class-16-advanced-scikit-learn) | 2/25: [Databases and MapReduce](#class-17-databases-and-mapreduce)
-3/2: [Recommenders](#class-18-recommenders) | 3/4: [Course Review, Companion Tools](#class-19-course-review-companion-tools)<br>**Milestone:** Second Draft (Optional)
-3/9: [TBD](#class-20-tbd) | 3/11: [Project Presentations](#class-21-project-presentations)
+2/16: *No Class* | 2/18: [Decision Trees](#class-15-decision-trees)<br>**Milestone:** First Draft
+2/23: [Ensembling](#class-16-ensembling) | 2/25: [Databases and MapReduce](#class-17-databases-and-mapreduce)
+3/2: [Recommenders](#class-18-recommenders) | 3/4: [Advanced scikit-learn](#class-19-advanced-scikit-learn)<br>**Milestone:** Second Draft (Optional)
+3/9: [Course Review, Companion Tools](#class-20-course-review-companion-tools) | 3/11: [Project Presentations](#class-21-project-presentations)
 3/16: [Project Presentations](#class-22-project-presentations) |
 
 
@@ -198,13 +198,15 @@ Monday | Wednesday
 * Model evaluation metrics ([slides](slides/10_model_evaluation_metrics.pdf))
     * Regression:
         * Root Mean Squared Error ([code](code/10_rmse.py))
-        * Article discussion: [Smart Autofill](http://googleresearch.blogspot.com/2014/10/smart-autofill-harnessing-predictive.html)
     * Classification:
         * Confusion matrix ([code](code/10_confusion_roc.py))
         * ROC curve ([video](https://www.youtube.com/watch?v=OAl6eAyP-yo))
 
 **Homework:**
+* [Model evaluation homework](homework/10_model_evaluation.md), due by midnight on Sunday.
+    * [Sample solution code](code/10_glass_id_homework_solution.py).
 * Watch Kevin's [Kaggle project presentation video](https://www.youtube.com/watch?v=HGr1yQV3Um0) (16 minutes) for an overview of the end-to-end machine learning process, including some aspects that we have not yet covered in class.
+* Read this short article on Google's [Smart Autofill](http://googleresearch.blogspot.com/2014/10/smart-autofill-harnessing-predictive.html), and see if you can figure out exactly how the system works.
 
 **Optional:**
 * For more on Kaggle, watch [Kaggle Transforms Data Science Into Competitive Sport](https://www.youtube.com/watch?v=8w4UY66GKcM) (28 minutes).
@@ -218,33 +220,133 @@ Monday | Wednesday
 
 
 ### Class 11: Working a Data Problem
+* Today we will work on a real world data problem! Our [data](data/ZYX_prices.csv) is stock data over 7 months of a fictional company ZYX including twitter sentiment, volume and stock price. Our goal is to create a predictive model that predicts forward returns.
+
+* Project overview ([slides](slides/11_GA_Stocks.pdf))
+    * Be sure to read documentation thoroughly and ask questions! We may not have included all of the information you need...
 
 
 ### Class 12: Clustering and Visualization
+* The [slides](slides/12_clustering.pdf) today will focus on our first look at unsupervised learning, K-Means Clustering!
+* The [code](code/) for today focuses on two main examples:
+    * We will investigate simple clustering using the iris data set.
+    * We will take a look at a harder example, using Pandora songs as data. See [data](data/songs.csv).
+
+**Homework:**
+* Read Paul Graham's [A Plan for Spam](http://www.paulgraham.com/spam.html) and be prepared to **discuss it in class on Monday**. Here are some questions to think about while you read:
+    * Should a spam filter optimize for sensitivity or specificity, in Paul's opinion?
+    * Before he tried the "statistical approach" to spam filtering, what was his approach?
+    * How exactly does his statistical filtering system work?
+    * What did Paul say were some of the benefits of the statistical approach?
+    * How good was his prediction of the "spam of the future"?
+* Below are the foundational topics upon which Monday's class will depend. Please review these materials before class:
+    * **Confusion matrix:** [Kevin's guide](http://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/) roughly mirrors the lecture from class 10.
+    * **Sensitivity and specificity:** Rahul Patwari has an [excellent video](https://www.youtube.com/watch?v=U4_3fditnWg&list=PL41ckbAGB5S2PavLIXUETzAmi5reIod23) (9 minutes).
+    * **Basics of probability:** These [introductory slides](https://docs.google.com/presentation/d/1cM2dVbJgTWMkHoVNmYlB9df6P2H8BrjaqAcZTaLe9dA/edit#slide=id.gfc3caad2_00) (from the [OpenIntro Statistics textbook](https://www.openintro.org/stat/textbook.php)) are quite good and include integrated quizzes. Pay specific attention to these terms: probability, sample space, mutually exclusive, independent.
+* You should definitely be working on your project! **Your rough draft is due in two weeks!**
+
+**Resources:**
+* [Introduction to Data Mining](http://www-users.cs.umn.edu/~kumar/dmbook/index.php) has a nice [chapter on cluster analysis](http://www-users.cs.umn.edu/~kumar/dmbook/ch8.pdf).
+* The scikit-learn user guide has a nice [section on clustering](http://scikit-learn.org/stable/modules/clustering.html).
 
 
 ### Class 13: Naive Bayes
+* Briefly discuss [A Plan for Spam](http://www.paulgraham.com/spam.html)
+* Probability and Bayes' theorem
+    * [Slides](slides/13_naive_bayes.pdf) part 1
+    * [Visualization of conditional probability](http://setosa.io/conditional/)
+    * Applying Bayes' theorem to iris classification ([code](code/13_bayes_iris.py))
+* Naive Bayes classification
+    * [Slides](slides/13_naive_bayes.pdf) part 2
+    * Example with spam email
+    * [Airport security example](http://www.quora.com/In-laymans-terms-how-does-Naive-Bayes-work/answer/Konstantin-Tt)
+* Naive Bayes classification in scikit-learn ([code](code/13_naive_bayes.py))
+    * Data set: [SMS Spam Collection](https://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection)
+    * scikit-learn documentation: [CountVectorizer](http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html), [Naive Bayes](http://scikit-learn.org/stable/modules/naive_bayes.html)
+
+**Resources:**
+* The first part of the slides was adapted from [Visualizing Bayes' theorem](http://oscarbonilla.com/2009/05/visualizing-bayes-theorem/), which includes an additional example (using Venn diagrams) of how this applies to testing for breast cancer.
+* For an alternative introduction to Bayes' Theorem, [Bayes' Rule for Ducks](https://planspacedotorg.wordpress.com/2014/02/23/bayes-rule-for-ducks/), this [5-minute video on conditional probability](https://www.youtube.com/watch?v=Zxm4Xxvzohk), or these [slides on conditional probability](https://docs.google.com/presentation/d/1psUIyig6OxHQngGEHr3TMkCvhdLInnKnclQoNUr4G4U/edit#slide=id.gfc69f484_00) may be helpful.
+* For more details on Naive Bayes classification, Wikipedia has two useful articles ([Naive Bayes classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier) and [Naive Bayes spam filtering](http://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering)), and Cross Validated has an excellent [Q&A](http://stats.stackexchange.com/questions/21822/understanding-naive-bayes).
+* If you enjoyed Paul Graham's article, you can read [his follow-up article](http://www.paulgraham.com/better.html) on how he improved his spam filter and this [related paper](http://www.merl.com/publications/docs/TR2004-091.pdf) about state-of-the-art spam filtering in 2004.
+
+**Homework:**
+* Download all of the NLTK collections.
+   * In Python, use the following commands to bring up the download menu.
+   * ```import nltk```
+   * ```nltk.download()```
+   * Choose "all".
+   * Alternatively, just type ```nltk.download('all')```
+* Install two new packages:  ```textblob``` and ```lda```.
+   * Open a terminal or command prompt.
+   * Type ```pip install textblob``` and ```pip install lda```.
 
 
 ### Class 14: Natural Language Processing
+* Overview of Natural Language Processing ([slides](slides/14_natural_language_processing.pdf))
+* Real World Examples
+* Natural Language Processing ([code](code/14_nlp_class.py))
+* NLTK: tokenization, stemming, lemmatization, part of speech tagging, stopwords, Named Entity Recognition (Stanford NER Tagger), TF-IDF, LDA, document summarization
+* Alternative: TextBlob
+
+**Resources:**
+* [Natural Language Processing with Python](http://www.nltk.org/book/): free online book to go in-depth with NLTK
+* [NLP online course](https://www.coursera.org/course/nlp): no sessions are available, but [video lectures](https://class.coursera.org/nlp/lecture) and [slides](http://web.stanford.edu/~jurafsky/NLPCourseraSlides.html) are still accessible
+* [Brief slides](http://files.meetup.com/7616132/DC-NLP-2013-09%20Charlie%20Greenbacker.pdf) on the major task areas of NLP
+* [Detailed slides](https://github.com/ga-students/DAT_SF_9/blob/master/16_Text_Mining/DAT9_lec16_Text_Mining.pdf) on a lot of NLP terminology
+* [A visual survey of text visualization techniques](http://textvis.lnu.se/): for exploration and inspiration
+* [DC Natural Language Processing](http://www.meetup.com/DC-NLP/): active Meetup group
+* [Stanford CoreNLP](http://nlp.stanford.edu/software/corenlp.shtml): suite of tools if you want to get serious about NLP
+* Getting started with regex: [Python introductory lesson](https://developers.google.com/edu/python/regular-expressions) and [reference guide](https://github.com/justmarkham/DAT3/blob/master/code/99_regex_reference.py), [real-time regex tester](https://regex101.com/#python), [in-depth tutorials](http://www.rexegg.com/)
+* [SpaCy](http://honnibal.github.io/spaCy/): a new NLP package
 
 
-### Class 15: Decision Trees and Ensembles
+### Class 15: Decision Trees
+* Decision trees ([IPython notebook](http://nbviewer.ipython.org/github/justmarkham/DAT4/blob/master/notebooks/15_decision_trees.ipynb))
+
+**Homework:**
+* By next Wednesday (before class), review the project drafts of your two assigned peers according to [these guidelines](peer_review.md). You should upload your feedback as a Markdown (or plain text) document to the "reviews" folder of DAT4-students. If your last name is Smith and you are reviewing Jones, you should name your file `smith_reviews_jones.md`.
+
+**Resources:**
+* scikit-learn documentation: [Decision Trees](http://scikit-learn.org/stable/modules/tree.html)
+
+**Installing Graphviz (optional):**
+* Mac:
+    * [Download and install PKG file](http://www.graphviz.org/Download_macos.php)
+* Windows:
+    * [Download and install MSI file](http://www.graphviz.org/Download_windows.php)
+    * Add it to your Path: Go to Control Panel, System, Advanced System Settings, Environment Variables. Under system variables, edit "Path" to include the path to the "bin" folder, such as: `C:\Program Files (x86)\Graphviz2.38\bin`
 
 
-### Class 16: Advanced scikit-learn
+### Class 16: Ensembling
+* Ensembling ([IPython notebook](http://nbviewer.ipython.org/github/justmarkham/DAT4/blob/master/notebooks/16_ensembling.ipynb))
+
+**Resources:**
+* scikit-learn documentation: [Ensemble Methods](http://scikit-learn.org/stable/modules/ensemble.html)
+* Quora: [How do random forests work in layman's terms?](http://www.quora.com/How-do-random-forests-work-in-laymans-terms/answer/Edwin-Chen-1)
 
 
 ### Class 17: Databases and MapReduce
+* Learn the basics of databases [database code](code/17_sql.py)
+* MapReduce basics [slides](slides/17_db_mr.pdf)
+* MapReduce example in python [code](code/17_map_reduce.py)
+
+**Resources:**
+* [Forbes: Is it Time for Hadoop Alternatives?](http://www.forbes.com/sites/johnwebster/2014/12/08/is-it-time-for-hadoop-alternatives/)
+* [IBM: What is MapReduce?](http://www-01.ibm.com/software/data/infosphere/hadoop/mapreduce/)
+* [Wakari MapReduce IPython notebook](https://www.wakari.io/sharing/bundle/nkorf/MapReduce%20Example)
+* [What Every Data Scientist Needs to Know about SQL](http://joshualande.com/data-science-sql/)
+* [Brandon's SQL Bootcamp](https://github.com/brandonmburroughs/sql_bootcamp)
+* SQL tutorials from [SQLZOO](http://sqlzoo.net/wiki/Main_Page) and [Mode Analytics](http://sqlschool.modeanalytics.com/)
 
 
 ### Class 18: Recommenders
 
 
-### Class 19: Course Review, Companion Tools
+### Class 19: Advanced scikit-learn
 
 
-### Class 20: TBD
+### Class 20: Course Review, Companion Tools
 
 
 ### Class 21: Project Presentations
